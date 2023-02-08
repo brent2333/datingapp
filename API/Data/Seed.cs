@@ -16,7 +16,7 @@ namespace API.Data
 
             var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
 
-            var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options);
+            var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
 
             foreach (var user in users)
             {
@@ -30,6 +30,7 @@ namespace API.Data
 
                 context.Users.Add(user);
             }
+            await context.SaveChangesAsync();
         }
     }
 }
